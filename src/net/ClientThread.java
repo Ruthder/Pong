@@ -15,12 +15,12 @@ public class ClientThread implements Runnable {
     private DataInputStream mensajeS;
     private Ventana n1;
     private Principal p;
-    private String ip;
+    private final String IP;
 
     public ClientThread(Ventana n1, Principal p, String ip) {
         this.n1 = n1;
         this.p = p;
-        this.ip = ip;
+        this.IP = ip;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ClientThread implements Runnable {
 
     void mandar() {
         try {
-            socket = new Socket(ip, PUERTO);
+            socket = new Socket(IP, PUERTO);
             if (!socket.isClosed()) {
                 mensaje = new DataOutputStream(socket.getOutputStream());
                 mensajeS = new DataInputStream(socket.getInputStream());
