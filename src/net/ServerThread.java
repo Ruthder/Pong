@@ -13,14 +13,11 @@ public class ServerThread implements Runnable {
     private final int PORT = 6969;
     private ServerSocket sc;
     private Socket socket;
-    private DataOutputStream salida;
     private boolean state = false;
-    private Tablero v;
     private Ventana v1;
     private Principal p;
 
-    public ServerThread(Tablero v, Ventana v1, Principal pal) {
-        this.v = v;
+    public ServerThread(Ventana v1, Principal pal) {
         this.v1 = v1;
         this.p = pal;
     }
@@ -65,8 +62,9 @@ public class ServerThread implements Runnable {
             DataInputStream entrada = new DataInputStream(socket.getInputStream());
             DataOutputStream salida = new DataOutputStream(socket.getOutputStream());
             String auxiliar = entrada.readUTF();
-            salida.writeUTF("servidorcito");
             p.setCadena(auxiliar);
+            String auxiliar2 = p.getCadenaS();
+            salida.writeUTF(auxiliar2);       
             socket.close();
         } catch (IOException ex) {
             //System.out.println(ex.getMessage());

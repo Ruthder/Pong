@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 public class Principal {
     
     volatile String cadena, cadenaS;
-    volatile String[] posiciones, posicionesS;
+    volatile String[] posiciones;
     
     public String getCadena() {
         return cadena;
@@ -26,10 +26,6 @@ public class Principal {
         this.cadenaS = cadenaS;
     }
 
-    public String[] getPosicionesS() {
-        return posicionesS;
-    }
-    
     public void setCadena(String cadena) {
         this.cadena = cadena;
         posiciones = cadena.split(";");

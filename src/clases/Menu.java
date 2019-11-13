@@ -128,21 +128,15 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Ventana ventana = new Ventana(true, p);
+        Ventana ventana = new Ventana(true, p, "");
         ventana.setVisible(true);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Ventana ventana = new Ventana(false, p);
-        ventana.setVisible(true);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
-        
         jPanel1.setVisible(false);
         jPanel2.setVisible(true);
-        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -150,7 +144,14 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
+        if(!"".equals(jTextField1.getText())){
+            Ventana ventana = new Ventana(false, p, jTextField1.getText());
+            ventana.setVisible(true);
+            ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
+        }else{
+            //error
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(Principal p) {

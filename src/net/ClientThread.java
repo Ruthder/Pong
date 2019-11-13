@@ -1,6 +1,5 @@
 package net;
 
-import clases.Tablero;
 import clases.Ventana;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -10,19 +9,18 @@ import principal.Principal;
 
 public class ClientThread implements Runnable {
 
-    private final String HOST = "localhost";
     private final int PUERTO = 6969;
     private Socket socket;
     private DataOutputStream mensaje;
     private DataInputStream mensajeS;
-    private Tablero v;
     private Ventana n1;
     private Principal p;
+    private String ip;
 
-    public ClientThread(Tablero v, Ventana n1, Principal p) {
-        this.v = v;
+    public ClientThread(Ventana n1, Principal p, String ip) {
         this.n1 = n1;
         this.p = p;
+        this.ip = ip;
     }
 
     @Override
@@ -51,14 +49,14 @@ public class ClientThread implements Runnable {
 
     void mandar() {
         try {
-            socket = new Socket(HOST, PUERTO);
+            socket = new Socket(ip, PUERTO);
             if (!socket.isClosed()) {
                 mensaje = new DataOutputStream(socket.getOutputStream());
                 mensajeS = new DataInputStream(socket.getInputStream());
                 String auxiliar = p.getCadena();
                 mensaje.writeUTF(auxiliar);
                 String auxiliar2 = mensajeS.readUTF();
-                System.out.println(auxiliar2);
+                p.setCadenaS(auxiliar2);
             }
             socket.close();
         } catch (IOException ex) {

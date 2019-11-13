@@ -9,12 +9,13 @@ import principal.Principal;
 
 public class Ventana extends JFrame {
 
-    boolean server;
-    public Tablero canvas;
-    volatile boolean running;
+    private boolean server;
+    private Tablero canvas;
+    private volatile boolean running;
     private final Principal p;
+    private String ip;
     
-    public Ventana(boolean server, Principal p) {
+    public Ventana(boolean server, Principal p, String ip) {
         this.server = server;
         setTitle("JUEGO HOCKEY");
         setSize(800, 500);
@@ -23,6 +24,7 @@ public class Ventana extends JFrame {
         canvas = new Tablero(this, p, server);
         add(canvas);
         this.p = p;
+        this.ip = ip;
         iniciar();
     }
 
@@ -30,9 +32,9 @@ public class Ventana extends JFrame {
         Tablero v = canvas;
         Runnable nuevo;
         if (server) {
-            nuevo = new ServerThread(v, this, p);
+            nuevo = new ServerThread(this, p);
         } else {
-            nuevo = new ClientThread(v, this, p);
+            nuevo = new ClientThread(this, p, ip);
             abrir();
         }
         Thread hilo = new Thread(nuevo);
