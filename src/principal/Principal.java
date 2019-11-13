@@ -17,6 +17,18 @@ public class Principal {
     public String[] getPosiciones() {
         return posiciones;
     }
+
+    public String getCadenaS() {
+        return cadenaS;
+    }
+
+    public void setCadenaS(String cadenaS) {
+        this.cadenaS = cadenaS;
+    }
+
+    public String[] getPosicionesS() {
+        return posicionesS;
+    }
     
     public void setCadena(String cadena) {
         this.cadena = cadena;
