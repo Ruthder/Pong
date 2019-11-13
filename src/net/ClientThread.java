@@ -60,7 +60,7 @@ public class ClientThread implements Runnable {
             }
             socket.close();
         } catch (IOException ex) {
-            //System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
         }
     }
 }
