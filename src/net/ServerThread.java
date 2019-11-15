@@ -1,6 +1,5 @@
 package net;
 
-import clases.Tablero;
 import clases.Ventana;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

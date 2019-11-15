@@ -28,8 +28,11 @@ public class Menu extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(600, 600));
+        setMinimumSize(new java.awt.Dimension(600, 600));
         setPreferredSize(new java.awt.Dimension(600, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(600, 600));
@@ -124,11 +127,25 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().add(jPanel3);
         jPanel3.setBounds(0, 0, 550, 390);
 
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 550, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 390, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel4);
+        jPanel4.setBounds(0, 0, 550, 390);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Ventana ventana = new Ventana(true, p, "");
+        Ventana ventana = new Ventana(true, p, "", 1);
         ventana.setVisible(true);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.dispose();
@@ -145,7 +162,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if(!"".equals(jTextField1.getText())){
-            Ventana ventana = new Ventana(false, p, jTextField1.getText());
+            Ventana ventana = new Ventana(false, p, jTextField1.getText(), 1);
             ventana.setVisible(true);
             ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.dispose();
@@ -168,6 +185,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

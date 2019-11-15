@@ -25,6 +25,11 @@ public class Pelota {
     private final AudioClip rebote_2 = audio.getAudio("/recursos/rebote_pelota2.wav");
     private final AudioClip falta = audio.getAudio("/recursos/falta.wav");
 
+    public Pelota(double dx, double dy) {
+        this.dx = dx;
+        this.dy = dy;
+    }
+
     public void setX(double x) {
         this.x = x;
     }
@@ -65,7 +70,7 @@ public class Pelota {
         }
 
         if (x < limites.getMinX()) {
-            score2++; //el puntaje del jugador 2 aumenta en uno
+            //score2++; //el puntaje del jugador 2 aumenta en uno
 
             x = limites.getCenterX();
             y = limites.getCenterY();
@@ -75,7 +80,7 @@ public class Pelota {
         }
 
         if (x + TAMX >= limites.getMaxX()) {
-            score1++; //el puntaje del jugador 1 aumenta en uno
+            //score1++; //el puntaje del jugador 1 aumenta en uno
 
             x = limites.getCenterX();
             y = limites.getCenterY();
@@ -97,7 +102,7 @@ public class Pelota {
         }
 
         if (b) {
-            //delay(250);
+            delay(250);
         }
     }
 

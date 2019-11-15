@@ -24,11 +24,11 @@ public class Principal {
 
     public void setCadenaS(String cadenaS) {
         this.cadenaS = cadenaS;
+        posiciones = cadenaS.split(";");
     }
 
     public void setCadena(String cadena) {
         this.cadena = cadena;
-        posiciones = cadena.split(";");
     }
 
     public static void main(String[] args) {

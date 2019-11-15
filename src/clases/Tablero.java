@@ -13,22 +13,23 @@ public class Tablero extends JPanel implements Runnable {
 
     public Raqueta r1 = new Raqueta(10, 200);
     public Raqueta r2 = new Raqueta(784 - Raqueta.ANCHO, 200);
-    public Pelota p = new Pelota();
+    public Pelota p;
     boolean fin = false;
     private Ventana v;
     private Principal principal;
     boolean server;
     String aux, aux2;
 
-    public Tablero(Ventana v, Principal principal, boolean server) {
+    public Tablero(Ventana v, Principal principal, boolean server, double velocity) {
+        p = new Pelota(velocity, velocity);
         this.v = v;
         this.server = server;
         this.setBackground(Color.BLACK);
         this.principal = principal;
-        aux =     (int) r2.getRaqueta().getY() + ";" + 
-                  (int) p.getShape().getX() + ";" + 
-                  (int) p.getShape().getY() + ";" + p.getScore1() + ";" + p.getScore2();
-        aux2 = ""+(int) r1.getRaqueta().getY();
+        aux = "" + (int) r2.getRaqueta().getY();
+        aux2 = (int) r1.getRaqueta().getY() + ";"
+                + (int) p.getShape().getX() + ";"
+                + (int) p.getShape().getY() + ";" + p.getScore1() + ";" + p.getScore2();
         principal.setCadena(aux);
         principal.setCadenaS(aux2);
     }
@@ -66,25 +67,25 @@ public class Tablero extends JPanel implements Runnable {
     //actualiza el estado (posicion) de las raquetas y pelota
     private void update() {
         if (server) {
+            r2.setY(Integer.parseInt(principal.getCadena()));
+            aux2 = (int) r1.getRaqueta().getY() + ";"
+                    + (int) p.getShape().getX() + ";"
+                    + (int) p.getShape().getY() + ";" + p.getScore1() + ";" + p.getScore2();
+            principal.setCadenaS(aux2);
+            r1.moverR1(getBounds());
+            p.moverPelota(getBounds(), colision(r1.getRaqueta()), colision(r2.getRaqueta()));
+        } else {
             String vec[] = principal.getPosiciones();
-            r2.setY(Integer.parseInt(vec[0]));
+            r1.setY(Integer.parseInt(vec[0]));
             p.setX(Integer.parseInt(vec[1]));
             p.setY(Integer.parseInt(vec[2]));
             p.setScore1(Integer.parseInt(vec[3]));
             p.setScore2(Integer.parseInt(vec[4]));
-            r1.moverR1(getBounds());
-            aux2 = (int) r1.getRaqueta().getY() + "";
-            principal.setCadenaS(aux2);
-        } else {
-            r1.setY(Integer.parseInt(principal.getCadenaS()));
-            aux = (int) r2.getRaqueta().getY() + ";" + 
-                  (int) p.getShape().getX() + ";" + 
-                  (int) p.getShape().getY() + ";" + p.getScore1() + ";" + p.getScore2();
+            aux = "" + (int) r2.getRaqueta().getY();
             principal.setCadena(aux);
             r2.moverR2(getBounds());
         }
-        
-        p.moverPelota(getBounds(), colision(r1.getRaqueta()), colision(r2.getRaqueta()));  
+
     }
 
     //detecta si existe una colision entre la raqueta y la pelota
@@ -126,9 +127,9 @@ public class Tablero extends JPanel implements Runnable {
         }
     }
 
-    public static void main(Principal b, Ventana v, boolean server) {
+    public static void main(Principal b, Ventana v, boolean server, double velocity) {
         java.awt.EventQueue.invokeLater(() -> {
-            new Tablero(v, b, server).setVisible(true);
+            new Tablero(v, b, server, velocity).setVisible(true);
         });
     }
 
