@@ -15,13 +15,13 @@ public class Ventana extends JFrame {
     private final Principal p;
     private String ip;
     
-    public Ventana(boolean server, Principal p, String ip, double velocity) {
+    public Ventana(boolean server, Principal p, String ip, double velocity, int score) {
         this.server = server;
         setTitle("JUEGO HOCKEY");
         setSize(800, 500);
         setLocationRelativeTo(null);
         setResizable(false);
-        canvas = new Tablero(this, p, server, velocity);
+        canvas = new Tablero(this, p, server, velocity, score);
         add(canvas);
         this.p = p;
         this.ip = ip;

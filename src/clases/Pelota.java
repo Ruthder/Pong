@@ -75,7 +75,7 @@ public class Pelota {
         }
 
         if (x < limites.getMinX()) {
-            //score2++; //el puntaje del jugador 2 aumenta en uno
+            score2++; //el puntaje del jugador 2 aumenta en uno
 
             x = limites.getCenterX();
             y = limites.getCenterY();
@@ -85,7 +85,7 @@ public class Pelota {
         }
 
         if (x + TAMX >= limites.getMaxX()) {
-            //score1++; //el puntaje del jugador 1 aumenta en uno
+            score1++; //el puntaje del jugador 1 aumenta en uno
 
             x = limites.getCenterX();
             y = limites.getCenterY();

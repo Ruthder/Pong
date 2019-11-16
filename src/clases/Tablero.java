@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
+import java.util.Arrays;
 import javax.swing.JPanel;
 import principal.Principal;
 
@@ -19,9 +20,12 @@ public class Tablero extends JPanel implements Runnable {
     private Principal principal;
     boolean server;
     String datosCliente, datosServer;
+    int maxScore;
+    double velocity;
 
-    public Tablero(Ventana v, Principal principal, boolean server, double velocity) {
-        
+    public Tablero(Ventana v, Principal principal, boolean server, double velocity, int score) {
+        this.velocity = velocity;
+        this.maxScore = score;
         this.v = v;
         this.server = server;
         this.setBackground(Color.BLACK);
@@ -30,14 +34,19 @@ public class Tablero extends JPanel implements Runnable {
         datosCliente = "" + (int) r2.getRaqueta().getY();
         datosServer = (int) r1.getRaqueta().getY() + ";"
                 + (int) p.getShape().getX() + ";"
-                + (int) p.getShape().getY() + ";" + p.getScore1() + ";" + p.getScore2() + ";" + velocity;
+                + (int) p.getShape().getY() + ";" + p.getScore1() + ";" + p.getScore2()
+                + ";" + velocity + ";" + score;
         principal.setCadena(datosCliente);
         principal.setCadenaS(datosServer);
         if(!server){
             String vec[] = principal.getPosiciones();
+            System.out.println(Arrays.toString(vec));
             velocity = Double.parseDouble(vec[5]);
+            this.velocity = velocity;
             p.setVelocity(velocity);
+            this.maxScore = Integer.parseInt(vec[6]);
         }
+        
         
     }
 
@@ -76,8 +85,9 @@ public class Tablero extends JPanel implements Runnable {
         if (server) {
             r2.setY(Integer.parseInt(principal.getCadena()));
             datosServer = (int) r1.getRaqueta().getY() + ";"
-                    + (int) p.getShape().getX() + ";"
-                    + (int) p.getShape().getY() + ";" + p.getScore1() + ";" + p.getScore2();
+                + (int) p.getShape().getX() + ";"
+                + (int) p.getShape().getY() + ";" + p.getScore1() + ";" + p.getScore2()
+                + ";" + velocity + ";" + maxScore;
             principal.setCadenaS(datosServer);
             r1.moverR1(getBounds());
             p.moverPelota(getBounds(), colision(r1.getRaqueta()), colision(r2.getRaqueta()));
@@ -108,12 +118,12 @@ public class Tablero extends JPanel implements Runnable {
         g1.drawString(Integer.toString(p.getScore1()), (float) getBounds().getCenterX() - 50, 30);
         g2.drawString(Integer.toString(p.getScore2()), (float) getBounds().getCenterX() + 25, 30);
 
-        if (p.getScore1() == 5) {
+        if (p.getScore1() == maxScore) {
             g.drawString("GANÓ El JUGADOR 1", (float) getBounds().getCenterX() - 180, (float) getBounds().getCenterY() - 100);
             Pelota.finJuego = true;
             fin = true;
         }
-        if (p.getScore2() == 5) {
+        if (p.getScore2() == maxScore) {
             g.drawString("GANÓ EL JUGADOR 2", (float) getBounds().getCenterX() - 180, (float) getBounds().getCenterY() - 100);
             Pelota.finJuego = true;
             fin = true;
@@ -134,9 +144,9 @@ public class Tablero extends JPanel implements Runnable {
         }
     }
 
-    public static void main(Principal b, Ventana v, boolean server, double velocity) {
+    public static void main(Principal b, Ventana v, boolean server, double velocity, int score) {
         java.awt.EventQueue.invokeLater(() -> {
-            new Tablero(v, b, server, velocity).setVisible(true);
+            new Tablero(v, b, server, velocity, score).setVisible(true);
         });
     }
 
