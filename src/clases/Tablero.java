@@ -31,6 +31,7 @@ public class Tablero extends JPanel implements Runnable {
         this.setBackground(Color.BLACK);
         this.principal = principal;
         p = new Pelota(velocity, velocity);
+        System.out.println(velocity + " "+ score);
         datosCliente = "" + (int) r2.getRaqueta().getY();
         datosServer = (int) r1.getRaqueta().getY() + ";"
                 + (int) p.getShape().getX() + ";"
@@ -47,7 +48,14 @@ public class Tablero extends JPanel implements Runnable {
             this.maxScore = Integer.parseInt(vec[6]);
         }
         
-        
+    }
+
+    public void setMaxScore(int maxScore) {
+        this.maxScore = maxScore;
+    }
+
+    public void setVelocity(double velocity) {
+        this.velocity = velocity;
     }
 
     @Override

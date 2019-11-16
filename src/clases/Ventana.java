@@ -35,6 +35,10 @@ public class Ventana extends JFrame {
             nuevo = new ServerThread(this, p);
         } else {
             nuevo = new ClientThread(this, p, ip);
+            String vec[] = p.getPosiciones();
+            v.setMaxScore(Integer.parseInt(vec[6]));
+            v.setVelocity(Double.parseDouble(vec[5]));
+            System.out.println(vec[5]+";"+vec[6]);
             abrir();
         }
         Thread hilo = new Thread(nuevo);

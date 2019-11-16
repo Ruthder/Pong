@@ -13,7 +13,6 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         this.p = p;
         jPanel2.setVisible(false);
-        jPanel3.setVisible(false);
         jPanel4.setVisible(false);
         jSlider1.setValue(5);
     }
@@ -27,10 +26,11 @@ public class Menu extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jSlider1 = new javax.swing.JSlider();
         jToggleButton1 = new javax.swing.JToggleButton();
@@ -41,35 +41,60 @@ public class Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(600, 600));
-        setMinimumSize(new java.awt.Dimension(600, 600));
-        setPreferredSize(new java.awt.Dimension(600, 600));
+        setMaximumSize(new java.awt.Dimension(550, 387));
+        setMinimumSize(new java.awt.Dimension(550, 387));
+        setPreferredSize(new java.awt.Dimension(550, 387));
         setResizable(false);
-        setSize(new java.awt.Dimension(600, 600));
+        setSize(new java.awt.Dimension(550, 387));
         getContentPane().setLayout(null);
 
+        jPanel1.setMaximumSize(new java.awt.Dimension(550, 387));
+        jPanel1.setMinimumSize(new java.awt.Dimension(550, 387));
+        jPanel1.setPreferredSize(new java.awt.Dimension(550, 387));
         jPanel1.setLayout(null);
 
-        jButton1.setText("Crear partida");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cp2.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setFocusPainted(false);
+        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cp3.png"))); // NOI18N
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cp1.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(208, 146, 109, 23);
+        jButton1.setBounds(20, 220, 130, 50);
 
-        jButton2.setText("Unirse a partida");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/up2.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setFocusPainted(false);
+        jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/up3.png"))); // NOI18N
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/up1.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(208, 175, 109, 23);
+        jButton2.setBounds(20, 290, 130, 50);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/l52.png"))); // NOI18N
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(0, 0, 220, 170);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/bg.png"))); // NOI18N
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(0, 0, 630, 390);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 544, 387);
+        jPanel1.setBounds(-1, 0, 550, 390);
 
         jPanel2.setLayout(null);
 
@@ -92,20 +117,6 @@ public class Menu extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(-8, -7, 560, 400);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel3);
-        jPanel3.setBounds(0, 0, 550, 390);
 
         jPanel4.setLayout(null);
 
@@ -147,7 +158,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton8);
-        jButton8.setBounds(187, 356, 124, 23);
+        jButton8.setBounds(180, 220, 124, 23);
 
         jLabel1.setText("Puntaje máximo:");
         jPanel4.add(jLabel1);
@@ -221,9 +232,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JTextField jTextField1;
