@@ -30,6 +30,11 @@ public class Pelota {
         this.dy = dy;
     }
 
+    public void setVelocity(double v){
+        this.dx = v;
+        this.dy = v;
+    }
+    
     public void setX(double x) {
         this.x = x;
     }

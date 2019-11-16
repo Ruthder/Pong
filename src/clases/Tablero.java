@@ -18,20 +18,27 @@ public class Tablero extends JPanel implements Runnable {
     private Ventana v;
     private Principal principal;
     boolean server;
-    String aux, aux2;
+    String datosCliente, datosServer;
 
     public Tablero(Ventana v, Principal principal, boolean server, double velocity) {
-        p = new Pelota(velocity, velocity);
+        
         this.v = v;
         this.server = server;
         this.setBackground(Color.BLACK);
         this.principal = principal;
-        aux = "" + (int) r2.getRaqueta().getY();
-        aux2 = (int) r1.getRaqueta().getY() + ";"
+        p = new Pelota(velocity, velocity);
+        datosCliente = "" + (int) r2.getRaqueta().getY();
+        datosServer = (int) r1.getRaqueta().getY() + ";"
                 + (int) p.getShape().getX() + ";"
-                + (int) p.getShape().getY() + ";" + p.getScore1() + ";" + p.getScore2();
-        principal.setCadena(aux);
-        principal.setCadenaS(aux2);
+                + (int) p.getShape().getY() + ";" + p.getScore1() + ";" + p.getScore2() + ";" + velocity;
+        principal.setCadena(datosCliente);
+        principal.setCadenaS(datosServer);
+        if(!server){
+            String vec[] = principal.getPosiciones();
+            velocity = Double.parseDouble(vec[5]);
+            p.setVelocity(velocity);
+        }
+        
     }
 
     @Override
@@ -68,10 +75,10 @@ public class Tablero extends JPanel implements Runnable {
     private void update() {
         if (server) {
             r2.setY(Integer.parseInt(principal.getCadena()));
-            aux2 = (int) r1.getRaqueta().getY() + ";"
+            datosServer = (int) r1.getRaqueta().getY() + ";"
                     + (int) p.getShape().getX() + ";"
                     + (int) p.getShape().getY() + ";" + p.getScore1() + ";" + p.getScore2();
-            principal.setCadenaS(aux2);
+            principal.setCadenaS(datosServer);
             r1.moverR1(getBounds());
             p.moverPelota(getBounds(), colision(r1.getRaqueta()), colision(r2.getRaqueta()));
         } else {
@@ -81,8 +88,8 @@ public class Tablero extends JPanel implements Runnable {
             p.setY(Integer.parseInt(vec[2]));
             p.setScore1(Integer.parseInt(vec[3]));
             p.setScore2(Integer.parseInt(vec[4]));
-            aux = "" + (int) r2.getRaqueta().getY();
-            principal.setCadena(aux);
+            datosCliente = "" + (int) r2.getRaqueta().getY();
+            principal.setCadena(datosCliente);
             r2.moverR2(getBounds());
         }
 
