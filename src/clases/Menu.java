@@ -1,4 +1,3 @@
-
 package clases;
 
 import java.net.InetAddress;
@@ -8,21 +7,19 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import principal.Principal;
 
-
 public class Menu extends javax.swing.JFrame {
-
-    Principal p;
     
+    Principal p;
     
     public Menu(Principal p) {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.p = p;
         jPanel2.setVisible(false);
         jPanel4.setVisible(false);
         jSlider1.setValue(5);
         jToggleButton2.setSelected(true);
     }
-
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -243,6 +240,7 @@ public class Menu extends javax.swing.JFrame {
         jButton8.setBorder(null);
         jButton8.setBorderPainted(false);
         jButton8.setContentAreaFilled(false);
+        jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton8.setFocusPainted(false);
         jButton8.setMaximumSize(new java.awt.Dimension(130, 50));
         jButton8.setMinimumSize(new java.awt.Dimension(130, 50));
@@ -276,6 +274,7 @@ public class Menu extends javax.swing.JFrame {
         jButton5.setBorder(null);
         jButton5.setBorderPainted(false);
         jButton5.setContentAreaFilled(false);
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.setFocusPainted(false);
         jButton5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/r3.png"))); // NOI18N
         jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/r1.png"))); // NOI18N
@@ -302,7 +301,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel4.setVisible(true);
         try {
             InetAddress address = InetAddress.getLocalHost();
-            jLabel8.setText("IP: "+address.getHostAddress());
+            jLabel8.setText("IP: " + address.getHostAddress());
         } catch (UnknownHostException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -318,32 +317,32 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if(!"".equals(jTextField1.getText())){
+        if (!"".equals(jTextField1.getText())) {
             Ventana ventana = new Ventana(false, p, jTextField1.getText(), -1, -1, this);
             ventana.setVisible(true);
             ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.dispose();
-        }else{
+        } else {
             //error
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        
-        if(jToggleButton1.isSelected()){
-            dificultad(1);
-        }else if(jToggleButton2.isSelected()){
-            dificultad(2);
-        }else if(jToggleButton3.isSelected()){
-            dificultad(3);
-        }else if(jToggleButton4.isSelected()){
-            dificultad(4);
+        if (!jLabel9.getText().equals("Esperando conexión")) {
+            if (jToggleButton1.isSelected()) {
+                dificultad(1);
+            } else if (jToggleButton2.isSelected()) {
+                dificultad(2);
+            } else if (jToggleButton3.isSelected()) {
+                dificultad(3);
+            } else if (jToggleButton4.isSelected()) {
+                dificultad(4);
+            }
         }
-            
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-        jLabel1.setText("Puntaje máximo: "+ jSlider1.getValue());
+        jLabel1.setText("Puntaje máximo: " + jSlider1.getValue());
     }//GEN-LAST:event_jSlider1StateChanged
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -356,19 +355,19 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.setVisible(true);
         
     }//GEN-LAST:event_jButton5ActionPerformed
-
+    
     public static void main(Principal p) {
         java.awt.EventQueue.invokeLater(() -> {
             new Menu(p).setVisible(true);
         });
     }
     
-    private void dificultad(double d){
+    private void dificultad(double d) {
         jLabel9.setText("Esperando conexión");
         Ventana ventana = new Ventana(true, p, "", d, jSlider1.getValue(), this);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;

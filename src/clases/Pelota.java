@@ -56,10 +56,11 @@ public class Pelota {
         return new Rectangle2D.Double(x, y, TAMX, TAMY);
     }
 
-    void moverPelota(Rectangle2D limites, boolean colisionR1, boolean colisionR2) {
-        x += dx;
-        y += dy;
-
+    void moverPelota(Rectangle2D limites, boolean colisionR1, boolean colisionR2, boolean simueve) {
+        if(simueve){
+            x += dx;
+            y += dy;
+        }
         boolean b = false;
 
         if (colisionR1) {

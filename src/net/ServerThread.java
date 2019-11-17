@@ -1,16 +1,19 @@
 package net;
 
+import clases.Pelota;
 import clases.Ventana;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import principal.Principal;
 
 public class ServerThread implements Runnable {
 
     private final int PORT = 6969;
-    private ServerSocket sc;
+    private static  ServerSocket sc;
     private Socket socket;
     private boolean state = false;
     private Ventana v1;
@@ -19,8 +22,21 @@ public class ServerThread implements Runnable {
     public ServerThread(Ventana v1, Principal pal) {
         this.v1 = v1;
         this.p = pal;
+        try {
+            sc = new ServerSocket(PORT);
+        } catch (IOException ex) {
+            Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
+    public static void cerrarServer(){
+        try {
+            sc.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     @Override
     public synchronized void run() {
 
@@ -33,11 +49,7 @@ public class ServerThread implements Runnable {
         double tiempoTranscurrido;
         double delta = 0;
 
-        try {
-            sc = new ServerSocket(PORT);
-        } catch (IOException ex) {}
-
-        while (true) {
+        while (!Pelota.finJuego) {
             final long inicioBucle = System.nanoTime();
             tiempoTranscurrido = inicioBucle - referenciaAct;
             referenciaAct = inicioBucle;
@@ -63,7 +75,7 @@ public class ServerThread implements Runnable {
             String auxiliar = entrada.readUTF();
             p.setCadena(auxiliar);
             String auxiliar2 = p.getCadenaS();
-            salida.writeUTF(auxiliar2);       
+            salida.writeUTF(auxiliar2);    
             socket.close();
         } catch (IOException ex) {
             //System.out.println(ex.getMessage());

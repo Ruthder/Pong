@@ -1,16 +1,19 @@
 package net;
 
+import clases.Pelota;
 import clases.Ventana;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import principal.Principal;
 
 public class ClientThread implements Runnable {
 
     private final int PUERTO = 6969;
-    private Socket socket;
+    private static Socket socket;
     private DataOutputStream mensaje;
     private DataInputStream mensajeS;
     private Ventana n1;
@@ -34,7 +37,7 @@ public class ClientThread implements Runnable {
         double tiempoTranscurrido;
         double delta = 0;
 
-        while (true) {
+        while (!Pelota.finJuego) {
             final long inicioBucle = System.nanoTime();
             tiempoTranscurrido = inicioBucle - referenciaAct;
             referenciaAct = inicioBucle;
@@ -44,6 +47,14 @@ public class ClientThread implements Runnable {
                 mandar();
                 delta--;
             }
+        }
+    }
+    
+    public static void cerrarCliente(){
+        try {
+            socket.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -58,7 +69,6 @@ public class ClientThread implements Runnable {
                 String auxiliar2 = mensajeS.readUTF();
                 p.setCadenaS(auxiliar2);
             }
-            socket.close();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }

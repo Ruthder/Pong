@@ -15,6 +15,8 @@ public class Ventana extends JFrame {
     private final Principal p;
     private String ip;
     private Menu m;
+    private Runnable nuevo;
+    Thread hilo;
     
     public Ventana(boolean server, Principal p, String ip, double velocity, int score, Menu menu) {
         this.server = server;
@@ -32,7 +34,6 @@ public class Ventana extends JFrame {
 
     private synchronized void iniciar() {
         Tablero v = canvas;
-        Runnable nuevo;
         if (server) {
             nuevo = new ServerThread(this, p);
         } else {
@@ -43,11 +44,11 @@ public class Ventana extends JFrame {
             System.out.println(vec[5]+";"+vec[6]);
             abrir();
         }
-        Thread hilo = new Thread(nuevo);
+        hilo = new Thread(nuevo);
         hilo.start();
     }
 
-    private synchronized void detener() {
+    public void detener() {
         running = false;
     }
 
