@@ -9,6 +9,16 @@ public class Principal {
     
     volatile String cadena, cadenaS;
     volatile String[] posiciones;
+    String conectado = "";
+    
+    
+    public String getConectado() {
+        return conectado;
+    }
+    
+    public void setConectado(String conectado) {
+        this.conectado = conectado;
+    }
     
     public String getCadena() {
         return cadena;

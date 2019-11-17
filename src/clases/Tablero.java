@@ -31,7 +31,6 @@ public class Tablero extends JPanel implements Runnable {
         this.setBackground(Color.BLACK);
         this.principal = principal;
         p = new Pelota(velocity, velocity);
-        System.out.println(velocity + " "+ score);
         datosCliente = "" + (int) r2.getRaqueta().getY();
         datosServer = (int) r1.getRaqueta().getY() + ";"
                 + (int) p.getShape().getX() + ";"
@@ -41,7 +40,6 @@ public class Tablero extends JPanel implements Runnable {
         principal.setCadenaS(datosServer);
         if(!server){
             String vec[] = principal.getPosiciones();
-            System.out.println(Arrays.toString(vec));
             velocity = Double.parseDouble(vec[5]);
             this.velocity = velocity;
             p.setVelocity(velocity);
@@ -109,6 +107,7 @@ public class Tablero extends JPanel implements Runnable {
             datosCliente = "" + (int) r2.getRaqueta().getY();
             principal.setCadena(datosCliente);
             r2.moverR2(getBounds());
+            setMaxScore(Integer.parseInt(vec[6]));
         }
 
     }

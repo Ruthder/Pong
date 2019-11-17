@@ -14,10 +14,12 @@ public class Ventana extends JFrame {
     private volatile boolean running;
     private final Principal p;
     private String ip;
+    private Menu m;
     
-    public Ventana(boolean server, Principal p, String ip, double velocity, int score) {
+    public Ventana(boolean server, Principal p, String ip, double velocity, int score, Menu menu) {
         this.server = server;
-        setTitle("JUEGO HOCKEY");
+        this.m = menu;
+        setTitle("PONG");
         setSize(800, 500);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -51,7 +53,9 @@ public class Ventana extends JFrame {
 
     public void abrir() {
         running = true;
+        setVisible(true);
         addKeyListener(new EventoTeclado());
         new EngineGraphics(canvas).start();
+        m.dispose();
     }
 }

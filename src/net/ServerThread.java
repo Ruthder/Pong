@@ -56,7 +56,7 @@ public class ServerThread implements Runnable {
             socket = sc.accept();
             if (!state) {
                 v1.abrir();
-                state = true;
+                state = true; 
             }
             DataInputStream entrada = new DataInputStream(socket.getInputStream());
             DataOutputStream salida = new DataOutputStream(socket.getOutputStream());
