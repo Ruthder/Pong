@@ -10,9 +10,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import principal.Principal;
 
-public class ClientThread implements Runnable {
+public class ClientThread extends Thread {
 
-    private final int PUERTO = 6969;
+    private final int PUERTO = 6870;
     private static Socket socket;
     private DataOutputStream mensaje;
     private DataInputStream mensajeS;
@@ -56,7 +56,6 @@ public class ClientThread implements Runnable {
     }
     
     public static void cerrarCliente(){
-        
         //Cerrar cliente
         try {
             socket.close();

@@ -10,12 +10,14 @@ import principal.Principal;
 public class Ventana extends JFrame {
 
     private boolean server;
-    private Tablero canvas;
+    private Tablero tablero;
     private volatile boolean running;
     private final Principal p;
     private String ip;
     private Menu m;
+    //Runnable para hacer clases que funcionen con procesos independientes
     private Runnable nuevo;
+    //Thread es el hilo que va a hacer funcionar el proceso run
     Thread hilo;
     
     public Ventana(boolean server, Principal p, String ip, double velocity, int score, Menu menu) {
@@ -25,15 +27,15 @@ public class Ventana extends JFrame {
         setSize(800, 500);
         setLocationRelativeTo(null);
         setResizable(false);
-        canvas = new Tablero(this, p, server, velocity, score);
-        add(canvas);
+        tablero = new Tablero(this, p, server, velocity, score);
+        add(tablero);
         this.p = p;
         this.ip = ip;
         iniciar();
     }
 
     private synchronized void iniciar() {
-        Tablero v = canvas;
+        Tablero v = tablero;
         if (server) {
             nuevo = new ServerThread(this, p);
         } else {
@@ -56,7 +58,8 @@ public class Ventana extends JFrame {
         running = true;
         setVisible(true);
         addKeyListener(new EventoTeclado());
-        new EngineGraphics(canvas).start();
+        //Iniciar el hilo que se encarga del tablero
+        new EngineGraphics(tablero).start();
         m.dispose();
     }
 }

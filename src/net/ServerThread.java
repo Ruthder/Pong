@@ -10,9 +10,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import principal.Principal;
 
+
+
 public class ServerThread implements Runnable {
 
-    private final int PORT = 6969;
+    private final int PORT = 6870;
     private static  ServerSocket sc;
     private Socket socket;
     private boolean state = false;
